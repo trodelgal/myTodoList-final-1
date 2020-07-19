@@ -24,7 +24,7 @@ const getText = () => {
     return toDoText;
 }
 
-//SUMMERIZE TO OBJECT
+//THE OBJECT
 function creatTask() {
     const task = {
         priority: getPriority(),
@@ -34,7 +34,7 @@ function creatTask() {
     return task;
 }
 
-//GET THE OBJECT TO ARRAY AND PRINT THE OBJECT TO HTML with counter
+//GET THE OBJECT TO ARRAY AND PRINT THE OBJECT TO HTML WITH COUNTER
 function putTaskIntoTaskArray() {
     taskList.push(creatTask());
     console.log(taskList);
@@ -59,13 +59,8 @@ function createToDoListHTML(task) {
     const taskTodoTextDiv = document.createElement('div');
     taskTodoTextDiv.setAttribute('class', 'todoText');
     taskTodoTextDiv.innerHTML = task.todoText;
-
-    let deleteButton = document.createElement('button');
-    deleteButton.textContent = "delete";
-    deleteButton.setAttribute('class', 'deleteButton');
-    
-    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv, deleteButton);
-    
+  
+    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv);
     return taskContainerDiv;
 }
 
@@ -100,4 +95,30 @@ function countTheList(){
     counter.innerHTML = x;
     return counter
 }
+//BONUS
+//DO TASK ON ENTER 
+function enter(event) {
+    if (event.keyCode === 13)
+    putTaskIntoTaskArray()
+}
+toDoTextInput.addEventListener("keydown", enter)
 
+//PRIORITY SELECTOR ON KEYBOARD NUMBERS
+function keyboardNumber(event){
+    if (event.keyCode === 49){
+        prioritySelector.value = 1;  
+    }
+    if (event.keyCode === 50){
+        prioritySelector.value = 2;  
+    }
+    if (event.keyCode === 51){
+        prioritySelector.value = 3;  
+    }
+    if (event.keyCode === 52){
+        prioritySelector.value = 4;  
+    }
+    if (event.keyCode === 53){
+        prioritySelector.value = 5;  
+    }
+}
+toDoTextInput.addEventListener("keydown", keyboardNumber)
