@@ -1,12 +1,11 @@
-
 //VARIABLE
 const addButton = document.querySelector('#addButton');
 const prioritySelector = document.querySelector('#prioritySelector');
 const toDoTextInput = document.querySelector('#textInput');
 const viewSection = document.querySelector('.view');
 const sortButton = document.querySelector('#sortButton');
-let taskList = [];
 
+let taskList = [];
 
 //PROPERTIES OF OBJECT
 const getPriority = () => {
@@ -38,54 +37,58 @@ function creatTask() {
 //GET THE OBJECT TO ARRAY AND PRINT THE OBJECT TO HTML with counter
 function putTaskIntoTaskArray() {
     taskList.push(creatTask());
-    viewSection.appendChild(createToDoListHTML())
+    console.log(taskList);
+    viewSection.innerHTML = '';
+    showTask(taskList);
     countTheList(taskList);
-    toDoTextInput.value = '';
 }
 
 //CREATE THE LIST IN THE CONTAINER DIV
-function createToDoListHTML() {
+function createToDoListHTML(task) {
     const taskContainerDiv = document.createElement('div');
     taskContainerDiv.setAttribute('class', 'todoContainer');
 
     const taskrPiorityDiv = document.createElement('div');
     taskrPiorityDiv.setAttribute('class', 'todoPriority');
-    taskrPiorityDiv.textContent = prioritySelector.value;
+    taskrPiorityDiv.innerHTML = task.priority;
 
     const taskTodoCreatedAtDiv = document.createElement('div');
     taskTodoCreatedAtDiv.setAttribute('class', 'todoCreatedAt');
-    const today = new Date();
-    let zero = today.getMonth() < 10 ? '0' : '';
-    let zeroSeconds = today.getSeconds() < 10 ? '0' : '';
-    const createAt = `${today.getDate()}-${zero}${today.getMonth() + 1}-${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${zeroSeconds}${today.getSeconds()}`;
-    taskTodoCreatedAtDiv.textContent = createAt;
+    taskTodoCreatedAtDiv.innerHTML = task.todoCreatedAt;
     
     const taskTodoTextDiv = document.createElement('div');
     taskTodoTextDiv.setAttribute('class', 'todoText');
-    taskTodoTextDiv.textContent = toDoTextInput.value;
+    taskTodoTextDiv.innerHTML = task.todoText;
 
     let deleteButton = document.createElement('button');
     deleteButton.textContent = "delete";
     deleteButton.setAttribute('class', 'deleteButton');
     
-    taskContainerDiv.appendChild(taskrPiorityDiv);
-    taskContainerDiv.appendChild(taskTodoCreatedAtDiv);
-    taskContainerDiv.appendChild(taskTodoTextDiv);
+    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv, deleteButton);
     
     return taskContainerDiv;
 }
 
 //ADD THE CONTAINER DIV TO THE VIEW SECTION
-// function addTaskContainerDivToTheView(taskContainerDiv){
-//     viewSection.appendChild(taskContainerDiv);
-// }
-addButton.addEventListener('click', putTaskIntoTaskArray);
+function addTaskContainerDivToTheView(taskContainerDiv){
+    viewSection.appendChild(taskContainerDiv);
+}
+addButton.addEventListener('click', putTaskIntoTaskArray)
+
+//PRINT THE OBJECT TO HTML
+function showTask(taskList) {
+    toDoTextInput.value = '';
+    viewSection.innerHTML = '';
+    for (const task of taskList) {
+    addTaskContainerDivToTheView(createToDoListHTML(task));
+    }
+}
 
 //SORT THE LIST BY THE PRIORITY
 function sortListByPriority() {
     let taskList1 = taskList;
     console.log(taskList1);
-    taskListSorted = taskList1.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+    taskListSorted = taskList1.sort((a, b) => (a.priority < b.priority) ? 1 : -1);
     showTask(taskListSorted);
 }
 sortButton.addEventListener('click', sortListByPriority)
