@@ -4,20 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDoList</title>
     <script src="./main.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- HEADING -->
     <header>
-        <h1>To do List</h1>
+        <h1><span class="styling"> TODO </span> List </h1>
     </header>
     <!-- END-HEADING -->
+
     <!-- CONTROL -->
     <section class="control">
-        <input id="textInput" type="text">
+        <input id="textInput" type="text" placeholder="What do you want to do">
         <select id="prioritySelector">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -25,11 +27,16 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button id="addButton">Add</button>
-        <button id="sortButton">sort</button>
-        <div> Things to do:<div id="counter"></div></div>
+        <button id="addButton">+</button>
+        <button id="sortButton">Sort</button>
+        <button id="cleanButton">Clean all</button><br>
     </section>
+    <div id="count">
+        <p id="things"> Things to do- </p>
+        <div id="counter"></div>
+    </div>
     <!-- END-CONTROL -->
+
     <!-- VIEW -->
     <section class="view">
     </section>

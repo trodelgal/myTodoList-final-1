@@ -4,8 +4,10 @@ const prioritySelector = document.querySelector('#prioritySelector');
 const toDoTextInput = document.querySelector('#textInput');
 const viewSection = document.querySelector('.view');
 const sortButton = document.querySelector('#sortButton');
+const cleanButton = document.querySelector('#cleanButton');
 
 let taskList = [];
+let deleted =[];
 
 //PROPERTIES OF OBJECT
 const getPriority = () => {
@@ -14,9 +16,12 @@ const getPriority = () => {
 
 const getCreateAt = () => {
     const today = new Date();
-    let zero = today.getMonth() < 10 ? '0' : '';
+    let zeroMonth = today.getMonth() < 10 ? '0' : '';
+    let zeroDate = today.getDate() < 10 ? '0' : '';
+    let zeroHour = today.getHours() < 10 ? '0' : '';
+    let zeroMinutes = today.getMinutes() < 10 ? '0' : '';
     let zeroSeconds = today.getSeconds() < 10 ? '0' : '';
-    const createAt = `${today.getDate()}-${zero}${today.getMonth() + 1}-${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${zeroSeconds}${today.getSeconds()}`;
+    const createAt = `${zeroDate}${today.getDate()}-${zeroMonth}${today.getMonth() + 1}-${today.getFullYear()} ${zeroHour}${today.getHours()}:${zeroMinutes}${today.getMinutes()}:${zeroSeconds}${today.getSeconds()}`;
     return createAt;
 }
 const getText = () => {
@@ -36,6 +41,9 @@ function creatTask() {
 
 //GET THE OBJECT TO ARRAY AND PRINT THE OBJECT TO HTML WITH COUNTER
 function putTaskIntoTaskArray() {
+    if (toDoTextInput.value === '') {
+        alert("You must write something!");
+    return}
     taskList.push(creatTask());
     console.log(taskList);
     viewSection.innerHTML = '';
@@ -59,10 +67,32 @@ function createToDoListHTML(task) {
     const taskTodoTextDiv = document.createElement('div');
     taskTodoTextDiv.setAttribute('class', 'todoText');
     taskTodoTextDiv.innerHTML = task.todoText;
+
+    let removeButton = document.createElement('button');
+    removeButton.setAttribute('class', 'removeButton');
+    removeButton.innerHTML = 'REMOVE';
+
+    let doneButton = document.createElement('button');
+    doneButton.setAttribute('class', 'doneButton');
+    doneButton.innerHTML = 'DONE';
   
-    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv);
+    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv, doneButton, removeButton);
+    
+    function deleteMe(e){
+        taskContainerDiv.remove();
+        taskList.pop();
+        counter.innerHTML = taskList.length;        
+    }
+    function paint(e){
+        if(taskContainerDiv.style.backgroundColor === 'black'){
+        taskContainerDiv.style.backgroundColor = 'red';
+        }else{taskContainerDiv.style.backgroundColor = 'black'}
+    }
+    removeButton.addEventListener('click', deleteMe);
+    doneButton.addEventListener('click', paint);
     return taskContainerDiv;
 }
+
 
 //ADD THE CONTAINER DIV TO THE VIEW SECTION
 function addTaskContainerDivToTheView(taskContainerDiv){
@@ -82,7 +112,6 @@ function showTask(taskList) {
 //SORT THE LIST BY THE PRIORITY
 function sortListByPriority() {
     let taskList1 = taskList;
-    console.log(taskList1);
     taskListSorted = taskList1.sort((a, b) => (a.priority < b.priority) ? 1 : -1);
     showTask(taskListSorted);
 }
@@ -122,3 +151,24 @@ function keyboardNumber(event){
     }
 }
 toDoTextInput.addEventListener("keydown", keyboardNumber)
+
+//CLEAN ALL
+cleanButton.onclick = function(e){
+    viewSection.innerHTML = '';
+    taskList = [];
+    counter.innerHTML = 0;
+}
+
+// Add a "checked" symbol when clicking on a list item
+viewSection.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'div') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// // Click on a close button to hide the current list item
+// for (let i = 0; i < close.length; i++) {
+//     close[i].onclick = function() {
+//       let div = this.parentElement;
+//       div.style.display = "none";
+//     }
