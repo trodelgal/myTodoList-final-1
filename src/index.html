@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>StudentToDoList</title>
+    <title>MYToDoList</title>
     <script src="./main.js" defer></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 <body>
     <!-- HEADING -->
     <header>
-        <h1><span class="student">STUDENT</span><span class="styling"> TODO </span> List </h1>
+        <h1><span class="my">MY</span><span class="styling"> TODO </span> List </h1>
     </header>
     <!-- END-HEADING -->
 
@@ -33,16 +33,25 @@
         <button id="sortButton">Sort by priority</button>
         <button id="cleanButton">Clean all</button><br>
     </section>
+    <!-- END-CONTROL -->
+    
+    <!-- COUNTER -->
     <div id="count">
         <p id="things"> Things to do- </p>
         <div id="counter"></div>
     </div>
-    <!-- END-CONTROL -->
+    <!-- END-COUNTER -->
 
     <!-- VIEW -->
     <section class="view">
     </section>
-    <!-- END-VIEW     -->
+    <!-- END-VIEW -->
+
+    <!-- SEARCH -->
+    <section class="searching">
+    <input id="search" placeholder="search in the list" type="text">
+    </section>
+    <!--END-SEARCH -->
 </body>
 
 </html>

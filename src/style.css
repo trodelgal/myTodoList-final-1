@@ -23,7 +23,7 @@ h1 {
     color: lime;
 }
 
-.student {
+.my {
     font-weight: 800;
     color: rgb(9, 135, 253);
 }
@@ -137,6 +137,7 @@ h1 {
     margin-bottom: 1.5rem;
     border-bottom: 4px solid #fff;
     background-color: black;
+    user-select: none;
 }
 
 .todoText {
@@ -156,7 +157,7 @@ h1 {
     color: #fff;
     border: none;
     width: 10%;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 .doneButton {
@@ -179,4 +180,25 @@ h1 {
     color: brown;
     border: none;
     cursor: pointer;
+}
+.doneButton:hover, .removeButton:hover{
+    border: 1px solid white;
+}
+.searching{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#search{
+    padding: 0.5rem 1rem;
+    height: 30px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    width: 300px;
+    font-size: 1rem;
+    margin: 0.25rem;
+    border-radius: 25px;
+
 }

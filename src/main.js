@@ -5,6 +5,7 @@ const toDoTextInput = document.querySelector('#textInput');
 const viewSection = document.querySelector('.view');
 const sortButton = document.querySelector('#sortButton');
 let taskList = [];
+let taskListSearch = [];
 //BONUS
 const cleanButton = document.querySelector('#cleanButton');
 const until = document.querySelector('#date')
@@ -69,7 +70,7 @@ function createToDoListHTML(task) {
 
     const taskTodoCreatedAtDiv = document.createElement('div');
     taskTodoCreatedAtDiv.setAttribute('class', 'todoCreatedAt');
-    taskTodoCreatedAtDiv.innerHTML = 'Create at: ' + task.todoCreatedAt;
+    taskTodoCreatedAtDiv.innerHTML = 'Create at:<br>' + task.todoCreatedAt;
 
     const taskTodoTextDiv = document.createElement('div');
     taskTodoTextDiv.setAttribute('class', 'todoText');
@@ -78,7 +79,8 @@ function createToDoListHTML(task) {
     //BONUS
     const taskTodoUntilDiv = document.createElement('div');
     taskTodoUntilDiv.setAttribute('class', 'todoUntil');
-    taskTodoUntilDiv.innerHTML = 'when:<br>' + task.todoUntil;
+    const when = task.todoUntil === '' ? '' : 'when:<br>';
+    taskTodoUntilDiv.innerHTML = when + task.todoUntil;
 
     let removeButton = document.createElement('button');
     removeButton.setAttribute('class', 'removeButton');
@@ -98,7 +100,7 @@ function createToDoListHTML(task) {
     //CHANGE BACKGROUND COLOR ON DONE CLICK
     function paint(e) {
         if (taskContainerDiv.style.backgroundColor === 'black') {
-            taskContainerDiv.style.backgroundColor = 'red';
+            taskContainerDiv.style.backgroundColor = 'green';
         } else {
             taskContainerDiv.style.backgroundColor = 'black'
         }
@@ -175,3 +177,21 @@ cleanButton.onclick = function (e) {
     taskList = [];
     counter.innerHTML = 0;
 }
+
+
+
+//SEARCH BONUS
+const searchBar = document.querySelector('#search')
+searchBar.addEventListener('keyup', function (e) {
+    const term = e.target.value.toLowerCase();
+    const books = viewSection.querySelectorAll('.todoContainer');
+    Array.from(books);
+    for (let i = 0; i < books.length; i++) {
+        const title = books[i].querySelector('.todoText').textContent;
+        if (title.toLowerCase().indexOf(term) != -1) {
+            books[i].style.display = 'flex';
+        } else {
+            books[i].style.display = 'none';
+        }
+    }
+})
