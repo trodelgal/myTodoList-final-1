@@ -1,31 +1,41 @@
-*{
+* {
     padding: 0px;
-    margin:0px;
+    margin: 0px;
     box-sizing: border-box;
 }
-body{
+
+body {
     height: 100%;
     background-color: #111;
 }
-h1{
-  font-size: 3rem;
-  font-weight: 50;
-  margin:1rem 0 3rem;
-  text-align: center;
-  color: #fff;
-  font-family: 'Hind', sans-serif;
+
+h1 {
+    font-size: 3rem;
+    font-weight: 50;
+    margin: 1rem 0 3rem;
+    text-align: center;
+    color: #fff;
+    font-family: 'Hind', sans-serif;
 }
-.styling{
+
+.styling {
     font-weight: 800;
     color: lime;
 }
-.control{
+
+.student {
+    font-weight: 800;
+    color: rgb(9, 135, 253);
+}
+
+.control {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-#textInput{
+
+#textInput {
     padding: 0.5rem 1rem;
     height: 50px;
     outline: none;
@@ -36,6 +46,23 @@ h1{
     margin: 0.25rem;
     border-radius: 25px;
 }
+
+#until {
+    height: 50px;
+    width: 160px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    color: silver;
+    margin: 0.5px;
+}
+
+#date {
+    outline: none;
+    border: none;
+}
+
 #addButton {
     font-size: 25px;
     height: 50px;
@@ -47,9 +74,10 @@ h1{
     color: #fff;
     margin: 0.5px;
     margin-right: 5px;
-    cursor: pointer;  
+    cursor: pointer;
 }
-#sortButton{
+
+#sortButton {
     height: 50px;
     width: 50px;
     border-radius: 25px;
@@ -58,9 +86,10 @@ h1{
     background-color: limegreen;
     color: #fff;
     margin: 0.5px;
-    cursor: pointer;  
+    cursor: pointer;
 }
-#cleanButton{
+
+#cleanButton {
     height: 50px;
     width: 50px;
     border-radius: 25px;
@@ -69,9 +98,10 @@ h1{
     background-color: limegreen;
     color: #fff;
     margin: 0.5px;
-    cursor: pointer;  
+    cursor: pointer;
 }
-#prioritySelector{
+
+#prioritySelector {
     height: 50px;
     width: 70px;
     border-radius: 25px;
@@ -79,20 +109,24 @@ h1{
     border: none;
     background-color: #fff;
     color: silver;
-    margin: 0.5px; 
-}
-#addButton:hover, #cleanButton:hover, #sortButton:hover{
-    opacity: 0.7;
-}
-#count{
-    font-size: 20px;
-   font-family: 'Hind', sans-serif;
-   color: #fff;
-   display: flex;
-   justify-content: center;
+    margin: 0.5px;
 }
 
-.todoContainer{
+#addButton:hover,
+#cleanButton:hover,
+#sortButton:hover {
+    opacity: 0.7;
+}
+
+#count {
+    font-size: 20px;
+    font-family: 'Hind', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.todoContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -104,40 +138,45 @@ h1{
     border-bottom: 4px solid #fff;
     background-color: black;
 }
-.todoText{
+
+.todoText {
     background: none;
     outline: none;
     color: #fff;
-    border:none;
+    border: none;
     width: 60%;
     font-size: 1.4rem;
 }
-.todoPriority, .todoCreatedAt{
+
+.todoPriority,
+.todoCreatedAt,
+.todoUntil {
     background: none;
     outline: none;
     color: #fff;
-    border:none;
+    border: none;
     width: 10%;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
-.doneButton{
+
+.doneButton {
     font-size: 1.4rem;
     margin: 0 0.5rem;
     width: 10%;
     font-family: 'Hind', sans-serif;
     background: none;
-    color:lime;
+    color: lime;
     border: none;
     cursor: pointer;
 }
 
-.removeButton{
+.removeButton {
     font-size: 1.4rem;
     margin: 0 0.5rem;
     width: 10%;
     font-family: 'Hind', sans-serif;
     background: none;
-    color:brown;
+    color: brown;
     border: none;
     cursor: pointer;
 }

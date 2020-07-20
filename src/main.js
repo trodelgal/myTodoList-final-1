@@ -4,12 +4,14 @@ const prioritySelector = document.querySelector('#prioritySelector');
 const toDoTextInput = document.querySelector('#textInput');
 const viewSection = document.querySelector('.view');
 const sortButton = document.querySelector('#sortButton');
-const cleanButton = document.querySelector('#cleanButton');
-
 let taskList = [];
-let deleted =[];
+//BONUS
+const cleanButton = document.querySelector('#cleanButton');
+const until = document.querySelector('#date')
 
-//PROPERTIES OF OBJECT
+
+
+//PROPERTIES OF TASK OBJECT
 const getPriority = () => {
     return prioritySelector.value
 };
@@ -28,13 +30,18 @@ const getText = () => {
     const toDoText = toDoTextInput.value;
     return toDoText;
 }
+const getuntil = () => {
+    const toDoUntil = until.value;
+    return toDoUntil;
+}
 
 //THE OBJECT
 function creatTask() {
     const task = {
         priority: getPriority(),
         todoCreatedAt: getCreateAt(),
-        todoText: getText()
+        todoText: getText(),
+        todoUntil: getuntil()
     }
     return task;
 }
@@ -43,15 +50,15 @@ function creatTask() {
 function putTaskIntoTaskArray() {
     if (toDoTextInput.value === '') {
         alert("You must write something!");
-    return}
+        return
+    }
     taskList.push(creatTask());
-    console.log(taskList);
     viewSection.innerHTML = '';
     showTask(taskList);
     countTheList(taskList);
 }
 
-//CREATE THE LIST IN THE CONTAINER DIV
+//CREATE THE TASK LIST IN THE CONTAINER DIV
 function createToDoListHTML(task) {
     const taskContainerDiv = document.createElement('div');
     taskContainerDiv.setAttribute('class', 'todoContainer');
@@ -62,11 +69,16 @@ function createToDoListHTML(task) {
 
     const taskTodoCreatedAtDiv = document.createElement('div');
     taskTodoCreatedAtDiv.setAttribute('class', 'todoCreatedAt');
-    taskTodoCreatedAtDiv.innerHTML = task.todoCreatedAt;
-    
+    taskTodoCreatedAtDiv.innerHTML = 'Create at: ' + task.todoCreatedAt;
+
     const taskTodoTextDiv = document.createElement('div');
     taskTodoTextDiv.setAttribute('class', 'todoText');
     taskTodoTextDiv.innerHTML = task.todoText;
+
+    //BONUS
+    const taskTodoUntilDiv = document.createElement('div');
+    taskTodoUntilDiv.setAttribute('class', 'todoUntil');
+    taskTodoUntilDiv.innerHTML = 'when:<br>' + task.todoUntil;
 
     let removeButton = document.createElement('button');
     removeButton.setAttribute('class', 'removeButton');
@@ -75,18 +87,21 @@ function createToDoListHTML(task) {
     let doneButton = document.createElement('button');
     doneButton.setAttribute('class', 'doneButton');
     doneButton.innerHTML = 'DONE';
-  
-    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoTextDiv, doneButton, removeButton);
-    
-    function deleteMe(e){
+
+    taskContainerDiv.append(taskrPiorityDiv, taskTodoCreatedAtDiv, taskTodoUntilDiv, taskTodoTextDiv, doneButton, removeButton, );
+    //DELET ON REMOVE CLICK
+    function deleteMe(e) {
         taskContainerDiv.remove();
         taskList.pop();
-        counter.innerHTML = taskList.length;        
+        counter.innerHTML = taskList.length;
     }
-    function paint(e){
-        if(taskContainerDiv.style.backgroundColor === 'black'){
-        taskContainerDiv.style.backgroundColor = 'red';
-        }else{taskContainerDiv.style.backgroundColor = 'black'}
+    //CHANGE BACKGROUND COLOR ON DONE CLICK
+    function paint(e) {
+        if (taskContainerDiv.style.backgroundColor === 'black') {
+            taskContainerDiv.style.backgroundColor = 'red';
+        } else {
+            taskContainerDiv.style.backgroundColor = 'black'
+        }
     }
     removeButton.addEventListener('click', deleteMe);
     doneButton.addEventListener('click', paint);
@@ -95,19 +110,20 @@ function createToDoListHTML(task) {
 
 
 //ADD THE CONTAINER DIV TO THE VIEW SECTION
-function addTaskContainerDivToTheView(taskContainerDiv){
+function addTaskContainerDivToTheView(taskContainerDiv) {
     viewSection.appendChild(taskContainerDiv);
 }
-addButton.addEventListener('click', putTaskIntoTaskArray)
 
 //PRINT THE OBJECT TO HTML
 function showTask(taskList) {
     toDoTextInput.value = '';
     viewSection.innerHTML = '';
     for (const task of taskList) {
-    addTaskContainerDivToTheView(createToDoListHTML(task));
+        addTaskContainerDivToTheView(createToDoListHTML(task));
     }
 }
+//CREATE THE LIST ON ADD CLICK
+addButton.addEventListener('click', putTaskIntoTaskArray)
 
 //SORT THE LIST BY THE PRIORITY
 function sortListByPriority() {
@@ -118,57 +134,44 @@ function sortListByPriority() {
 sortButton.addEventListener('click', sortListByPriority)
 
 //ADD COUNTER
-function countTheList(){
+function countTheList() {
     const counter = document.querySelector('#counter');
     let x = taskList.length;
     counter.innerHTML = x;
     return counter
 }
+
 //BONUS
 //DO TASK ON ENTER 
 function enter(event) {
     if (event.keyCode === 13)
-    putTaskIntoTaskArray()
+        putTaskIntoTaskArray()
 }
 toDoTextInput.addEventListener("keydown", enter)
 
 //PRIORITY SELECTOR ON KEYBOARD NUMBERS
-function keyboardNumber(event){
-    if (event.keyCode === 49){
-        prioritySelector.value = 1;  
+function keyboardNumber(event) {
+    if (event.keyCode === 49) {
+        prioritySelector.value = 1;
     }
-    if (event.keyCode === 50){
-        prioritySelector.value = 2;  
+    if (event.keyCode === 50) {
+        prioritySelector.value = 2;
     }
-    if (event.keyCode === 51){
-        prioritySelector.value = 3;  
+    if (event.keyCode === 51) {
+        prioritySelector.value = 3;
     }
-    if (event.keyCode === 52){
-        prioritySelector.value = 4;  
+    if (event.keyCode === 52) {
+        prioritySelector.value = 4;
     }
-    if (event.keyCode === 53){
-        prioritySelector.value = 5;  
+    if (event.keyCode === 53) {
+        prioritySelector.value = 5;
     }
 }
 toDoTextInput.addEventListener("keydown", keyboardNumber)
 
 //CLEAN ALL
-cleanButton.onclick = function(e){
+cleanButton.onclick = function (e) {
     viewSection.innerHTML = '';
     taskList = [];
     counter.innerHTML = 0;
 }
-
-// Add a "checked" symbol when clicking on a list item
-viewSection.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'div') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
-// // Click on a close button to hide the current list item
-// for (let i = 0; i < close.length; i++) {
-//     close[i].onclick = function() {
-//       let div = this.parentElement;
-//       div.style.display = "none";
-//     }
