@@ -57,6 +57,7 @@ function putTaskIntoTaskArray() {
     viewSection.innerHTML = '';
     showTask(taskList);
     countTheList(taskList);
+    saveTodos()
 }
 
 //CREATE THE TASK LIST IN THE CONTAINER DIV
@@ -176,6 +177,7 @@ cleanButton.onclick = function (e) {
     viewSection.innerHTML = '';
     taskList = [];
     counter.innerHTML = 0;
+    saveTodos()
 }
 
 
@@ -195,3 +197,20 @@ searchBar.addEventListener('keyup', function (e) {
         }
     }
 })
+//BONUS LOCAL STORAGE
+//SAVE DATA TO LOCAL STORAGE
+function saveTodos(){
+    var str = JSON.stringify(taskList);
+    localStorage.setItem('taskList',str);
+}
+//GET DATA TO LOCAL STORAGE
+function getTodos(){
+    var str = localStorage.getItem('taskList');
+    taskList = JSON.parse(str);
+    if(!taskList){
+        taskList=[];
+    }
+}
+//USE LOCAL STORAGE ONLOAD
+getTodos()
+showTask(taskList)
