@@ -57,7 +57,7 @@ function putTaskIntoTaskArray() {
     viewSection.innerHTML = '';
     showTask(taskList);
     countTheList(taskList);
-    saveTodos()
+    saveTodos();
 }
 
 //CREATE THE TASK LIST IN THE CONTAINER DIV
@@ -97,6 +97,7 @@ function createToDoListHTML(task) {
         taskContainerDiv.remove();
         taskList.pop();
         counter.innerHTML = taskList.length;
+        saveTodos()
     }
     //CHANGE BACKGROUND COLOR ON DONE CLICK
     function paint(e) {
@@ -145,6 +146,7 @@ function countTheList() {
 }
 
 //BONUS
+
 //DO TASK ON ENTER 
 function enter(event) {
     if (event.keyCode === 13)
@@ -180,8 +182,6 @@ cleanButton.onclick = function (e) {
     saveTodos()
 }
 
-
-
 //SEARCH BONUS
 const searchBar = document.querySelector('#search')
 searchBar.addEventListener('keyup', function (e) {
@@ -199,16 +199,16 @@ searchBar.addEventListener('keyup', function (e) {
 })
 //BONUS LOCAL STORAGE
 //SAVE DATA TO LOCAL STORAGE
-function saveTodos(){
+function saveTodos() {
     var str = JSON.stringify(taskList);
-    localStorage.setItem('taskList',str);
+    localStorage.setItem('taskList', str);
 }
 //GET DATA TO LOCAL STORAGE
-function getTodos(){
+function getTodos() {
     var str = localStorage.getItem('taskList');
     taskList = JSON.parse(str);
-    if(!taskList){
-        taskList=[];
+    if (!taskList) {
+        taskList = [];
     }
 }
 //USE LOCAL STORAGE ONLOAD
