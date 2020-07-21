@@ -197,6 +197,7 @@ searchBar.addEventListener('keyup', function (e) {
         }
     }
 })
+
 //BONUS LOCAL STORAGE
 //SAVE DATA TO LOCAL STORAGE
 function saveTodos() {
