@@ -181,16 +181,20 @@ h1 {
     border: none;
     cursor: pointer;
 }
-.doneButton:hover, .removeButton:hover{
+
+.doneButton:hover,
+.removeButton:hover {
     border: 1px solid white;
 }
-.searching{
+
+.searching {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-#search{
+
+#search {
     padding: 0.5rem 1rem;
     height: 30px;
     outline: none;
