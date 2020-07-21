@@ -9,7 +9,6 @@ Goal (only functionality):
 ![Add todo task](./readme-files/basic-todo.gif)
 
 
-
 ## Instructions
  - Create Github user
  - Go [here](https://github.com/new/import) and import this repository into your account. Make sure to select the private option
@@ -95,7 +94,6 @@ $ npm run test
 - Deploy your app to the internet ! using https://vercel.com/ add a link to your deployed app here (README.md)
 
 
-
 ## Grading policy
 * Your project will be graded by the number of automatic tests you pass
 * Visual creativity, use css to make this app app awesome 💅🏿
@@ -115,6 +113,20 @@ $ npm run test
  - Add link to the PR you created in your private repo [here](https://docs.google.com/spreadsheets/d/1P9_YDGqIqmV10fvTmIXc_AGV0_ycI2aBFo2h5zprUMI/edit#gid=1903529310), fill the other details
 
  GOOD LUCK!
- test gif:
- 
-  ![alt text](./ui-testing-recording.gif)
+
+ ## EXPLANATION ABOUT MY BONUS TASKS
+- Add the task by enter.
+- Choose the priority by keyboard numbers.
+- Option to add a date for the task.
+- Clean all button.
+- Done button- paints the task in green, signing that I finish with the task.
+- Remove button- deletes the task from the list.
+- Search input- I can search a specific task in my list.
+- Local storage- it saves the changes i've made also when I do refresh or closing the page. 
+
+
+ ## Test gif:
+  ![alt text](./readme-files\ui-testing-recording.gif)
+
+ ## Search gif:
+   ![alt text](./readme-files\ezgif.com-gif-maker.gif)

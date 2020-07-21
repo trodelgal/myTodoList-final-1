@@ -186,14 +186,14 @@ cleanButton.onclick = function (e) {
 const searchBar = document.querySelector('#search')
 searchBar.addEventListener('keyup', function (e) {
     const term = e.target.value.toLowerCase();
-    const books = viewSection.querySelectorAll('.todoContainer');
-    Array.from(books);
-    for (let i = 0; i < books.length; i++) {
-        const title = books[i].querySelector('.todoText').textContent;
-        if (title.toLowerCase().indexOf(term) != -1) {
-            books[i].style.display = 'flex';
+    const newTask = viewSection.querySelectorAll('.todoContainer');
+    Array.from(newTask);
+    for (let i = 0; i < newTask.length; i++) {
+        const taskText = newTask[i].querySelector('.todoText').textContent;
+        if (taskText.toLowerCase().indexOf(term) != -1) {
+            newTask[i].style.display = 'flex';
         } else {
-            books[i].style.display = 'none';
+            newTask[i].style.display = 'none';
         }
     }
 })
